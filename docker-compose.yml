@@ -1,0 +1,46 @@
+networks:
+  laravel:
+
+services:
+    nginx:
+        image: library/nginx:stable-alpine
+        container_name: nginx-task
+        volumes:
+            - ./src/app:/var/www/html
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+        ports :
+            - "8060:80"           
+        depends_on:
+            - php
+            - mysql
+        networks :
+            - laravel
+
+    mysql:
+        image: mysql:8.0
+        container_name: mysql_database
+        restart: unless-stopped
+        ports :
+            - "3306:3306"
+        volumes:
+            - ./mysql:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: lms
+            MYSQL_PASSWORD : root
+            MYSQL_ROOT_PASSWORD: root
+        networks :
+            - laravel
+            
+    php:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: php_application
+        volumes:
+            - ./src/app:/var/www/html
+        ports :
+            - "9000:9000"
+        networks :
+            - laravel
+
+
