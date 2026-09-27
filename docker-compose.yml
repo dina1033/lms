@@ -30,7 +30,24 @@ services:
             MYSQL_ROOT_PASSWORD: root
         networks :
             - laravel
-            
+
+
+    mysql_test:
+        image: mysql:8.0
+        container_name: mysql_test_database
+        restart: unless-stopped
+        ports:
+            - "3310:3306"
+        volumes:
+            - ./mysql_test:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: lms_test
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_PASSWORD: root
+        networks:
+            - laravel
+
+
     php:
         build:
             context: .

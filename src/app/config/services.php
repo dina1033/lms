@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'platform' => [
+        'revenue_percentage' => (float) env('PLATFORM_REVENUE_PERCENTAGE', 20),
+    ],
+
 ];
