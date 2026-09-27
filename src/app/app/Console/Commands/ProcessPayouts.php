@@ -6,7 +6,6 @@ use App\Models\Instructor;
 use App\Queries\PayoutEligibilityQuery;
 use App\Services\CreateInstructorPayout;
 use Illuminate\Console\Command;
-use App\Services\ProcessInstructorPayout;
 use App\Jobs\ProcessInstructorPayoutJob;
 
 class ProcessPayouts extends Command
@@ -24,8 +23,8 @@ class ProcessPayouts extends Command
 
     public function handle(): int
     {
-        $periodEnd = now();
-        $periodStart = now()->subMonth();
+        $periodStart = now()->subMonth()->startOfMonth();
+        $periodEnd = now()->subMonth()->endOfMonth();
 
         $instructorIds = \App\Models\LedgerEntry::query()
             ->whereBetween('occurred_at', [$periodStart, $periodEnd])

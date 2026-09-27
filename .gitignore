@@ -2,3 +2,4 @@
 /.vscode
 /mysql
 /mysql_test
+.DS_Store
