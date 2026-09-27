@@ -373,6 +373,22 @@ The project includes a read-only Filament interface for viewing instructor finan
 
 ---
 
+## Evidence
+
+### Passing Tests
+
+Screenshot showing the full test suite passing:
+
+![Passing Tests](docs/evidence/tests-passing.png)
+
+### Video Submission
+
+Project walkthrough video:
+
+[Watch the project walkthrough](YOUR_VIDEO_LINK)
+
+---
+
 # Production Considerations
 
 For a production deployment, potential improvements include:
