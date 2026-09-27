@@ -19,7 +19,7 @@ it('creates pending payouts for instructors with payable balances', function () 
         'type' => LedgerEntryType::REVENUE,
         'amount_minor' => 3000,
         'currency' => 'USD',
-        'occurred_at' => now()->subDays(10),
+        'occurred_at' => now()->subMonth()->startOfMonth()->addDays(5),
     ]);
 
     LedgerEntry::factory()->create([
@@ -27,7 +27,7 @@ it('creates pending payouts for instructors with payable balances', function () 
         'type' => LedgerEntryType::REVENUE,
         'amount_minor' => 5000,
         'currency' => 'USD',
-        'occurred_at' => now()->subDays(5),
+        'occurred_at' => now()->subMonth()->startOfMonth()->addDays(10),
     ]);
 
     $this->artisan('payouts:process')
@@ -64,7 +64,7 @@ it('processes the created payout through the payout provider', function () {
         'type' => LedgerEntryType::REVENUE,
         'amount_minor' => 8000,
         'currency' => 'USD',
-        'occurred_at' => now()->subDays(5),
+        'occurred_at' => now()->subMonth()->startOfMonth()->addDays(10),
     ]);
 
     $provider = new \Tests\Fakes\FakePayoutProvider(
