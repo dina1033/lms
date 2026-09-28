@@ -385,7 +385,7 @@ Screenshot showing the full test suite passing:
 
 Project walkthrough video:
 
-[Watch the project walkthrough](YOUR_VIDEO_LINK)
+[Watch the project walkthrough](https://drive.google.com/file/d/1z6RIfc_xWSMHFK4EsrafJzFSkQjdTJPH/view?usp=drive_link)
 
 ---
 

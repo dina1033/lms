@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\Instructor;
+use App\Models\LedgerEntry;
+use App\Enums\LedgerEntryType;
 use App\Queries\PayoutEligibilityQuery;
 use App\Services\CreateInstructorPayout;
 use Illuminate\Console\Command;
@@ -26,9 +28,9 @@ class ProcessPayouts extends Command
         $periodStart = now()->subMonth()->startOfMonth();
         $periodEnd = now()->subMonth()->endOfMonth();
 
-        $instructorIds = \App\Models\LedgerEntry::query()
+        $instructorIds = LedgerEntry::query()
             ->whereBetween('occurred_at', [$periodStart, $periodEnd])
-            ->where('type', \App\Enums\LedgerEntryType::REVENUE)
+            ->where('type', LedgerEntryType::REVENUE)
             ->whereDoesntHave('payoutItem')
             ->distinct()
             ->pluck('instructor_id');
